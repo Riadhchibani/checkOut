@@ -1,114 +1,99 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
 
   @override
-  State<HomePage> createState() => _MyStatefulWidgetState();
+  State<HomePage> createState() => MyStateFulWidgetMessengerApp();
 }
 
-class _MyStatefulWidgetState extends State<HomePage> {
+class MyStateFulWidgetMessengerApp extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: CustomScrollView(
-          slivers: <Widget>[
-            SliverAppBar(
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.vertical(
-                  bottom: Radius.circular(30),
+      body: Stack(
+        children: <Widget>[
+          FractionallySizedBox(
+            alignment: Alignment.topCenter,
+            widthFactor: 1,
+            child: Container(
+              height: 391,
+              decoration: new BoxDecoration(
+                borderRadius: BorderRadius.only(
+                  bottomLeft: Radius.circular(30),
+                  bottomRight: Radius.circular(30),
+                ),
+                color: Colors.blue[300],
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black87,
+                    blurRadius: 40,
+                    offset: Offset(0, 0), // Shadow position
+                  ),
+                ],
+              ),
+            ),
+          ),
+          Align(
+            alignment: Alignment.center,
+            child: CircleAvatar(
+              radius: 50,
+              child: ClipOval(
+                child: Image.asset(
+                  "assets/images/riadhImage.jpg",
+                  fit: BoxFit.cover,
+                  width: 100,
+                  height: 100,
                 ),
               ),
-              toolbarHeight: 150,
-              pinned: true,
-              snap: false,
-              floating: false,
-              expandedHeight: 310.0,
-              flexibleSpace: FlexibleSpaceBar(),
             ),
-            SliverToBoxAdapter(
-              child: SizedBox(
-                height: 20,
-                child: Center(),
+          ),
+        ],
+      ),
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.blue[400],
+        onPressed: () {
+          //code to execute on button press
+        },
+        child: Icon(Icons.ac_unit),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      bottomNavigationBar: BottomAppBar(
+        color: Colors.blue[200],
+        shape: CircularNotchedRectangle(), //shape of notch
+        notchMargin:
+            6, //notche margin between floating button and bottom appbar
+        child: Row(
+          //children inside bottom appbar
+          //mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: <Widget>[
+            Padding(
+              padding: EdgeInsets.all(5),
+              child: IconButton(
+                icon: Icon(
+                  Icons.home,
+                  color: Colors.white,
+                ),
+                onPressed: () {},
               ),
             ),
-            SliverList(
-              delegate: SliverChildBuilderDelegate(
-                (BuildContext context, int index) {
-                  return Container(
-                    color: index.isOdd ? Colors.white : Colors.black12,
-                    height: 100.0,
-                    child: Center(
-                      child: Text('$index', textScaleFactor: 5),
-                    ),
-                  );
+            Padding(
+              padding: EdgeInsets.all(5),
+              child: IconButton(
+                icon: Icon(
+                  Icons.send,
+                  color: Colors.white,
+                ),
+                onPressed: () {
+                  //code
                 },
-                childCount: 20,
               ),
             ),
           ],
         ),
-        bottomNavigationBar: BottomAppBar(
-          child: Padding(
-            padding: const EdgeInsets.all(8),
-            child: OverflowBar(
-                children: [Text("data"), Text("data"), Text("data")]),
-          ),
-        ));
+      ),
+    );
   }
 }
-/*
-
-
-
-        appBar: AppBar(
-          title: Text("Welcome"),
-        ),
-        body: NestedScrollView(
-          slivers: <Widget>[
-            SliverAppBar(
-                shadowColor: Colors.black,
-                pinned: true,
-                snap: false,
-                floating: false,
-                expandedHeight: 370.0,
-                leading: CircleAvatar(
-                  backgroundColor: Colors.red,
-                )
-                flexibleSpace: FlexibleSpaceBar(
-                title: Center(),
-                background: Container(
-                  height: 1500,
-                ),
-              ),
-                ),
-            const SliverToBoxAdapter(
-              child: SizedBox(
-                height: 20,
-                child: Center(),
-              ),
-            ),
-            SliverList(
-              delegate: SliverChildBuilderDelegate(
-                (BuildContext context, int index) {
-                  return Container(
-                    color: index.isOdd ? Colors.white : Colors.black12,
-                    height: 100.0,
-                    child: Center(
-                      child: Text('$index', textScaleFactor: 5),
-                    ),
-                  );
-                },
-                childCount: 20,
-              ),
-            ),
-          ],
-        ),
-        bottomNavigationBar: BottomAppBar(
-          child: Padding(
-            padding: const EdgeInsets.all(8),
-            child: OverflowBar(
-                children: [Text("data"), Text("data"), Text("data")]),
-          ),
-        )
- */
