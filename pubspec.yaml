@@ -51,6 +51,7 @@ flutter:
       - assets/images/logoAppFulter.png
       - assets/images/personIcon.png
       - assets/SVGs/logoAppFulter.svg
+      - assets/SVGs/githubSVG.svg
       - assets/images/riadhImage.jpg
 
 

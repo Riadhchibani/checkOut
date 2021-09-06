@@ -50,7 +50,7 @@ class MyStateFulWidgetMessengerApp extends State<MessengerPage> {
             child: CircleAvatar(
               radius: 10,
               child: Image.asset(
-                '${linkImage}',
+                '$linkImage',
               ),
             ),
           ),
@@ -60,7 +60,7 @@ class MyStateFulWidgetMessengerApp extends State<MessengerPage> {
               padding: EdgeInsets.all(2),
               child: Padding(
                 padding: EdgeInsets.all(2),
-                child: Text('${message}'),
+                child: Text('$message'),
               ),
             ),
             decoration: BoxDecoration(
