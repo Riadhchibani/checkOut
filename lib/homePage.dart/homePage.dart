@@ -1,3 +1,5 @@
+import 'package:app/messengerPage/messengerApp.dart';
+import 'package:app/router/customRoutingApp.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -12,87 +14,6 @@ class HomePage extends StatefulWidget {
 class MyStateFulWidgetMessengerApp extends State<HomePage> {
   double _height = 391.0;
   var _hide = false;
-
-  showAlertDialog(BuildContext context, String _title, String _content) {
-    Widget copyButton(_title) => Padding(
-        padding: EdgeInsets.all(3),
-        // ignore: deprecated_member_use
-        child: FlatButton(
-          child: Icon(
-            Icons.copy,
-            color: Colors.white,
-          ),
-          color: Colors.blue[100],
-          shape: RoundedRectangleBorder(
-              borderRadius: new BorderRadius.circular(19.0)),
-          onPressed: () {},
-        ));
-    Widget forwardButton(_title) => Padding(
-          padding: EdgeInsets.all(3),
-          // ignore: deprecated_member_use
-          child: Ink(
-            decoration: const ShapeDecoration(
-              color: Colors.lightBlue,
-              shape: CircleBorder(),
-            ),
-            child: IconButton(
-              hoverColor: Colors.blue[50],
-              icon: Icon(
-                Icons.forward,
-                color: Colors.blue[200],
-              ),
-              color: Colors.blue[100],
-              onPressed: () {},
-            ),
-          ),
-        );
-    // set up the AlertDialog
-    AlertDialog alert = AlertDialog(
-      content: Padding(
-        padding: EdgeInsets.only(left: 50),
-        child: Row(
-          children: [
-            copyButton(_content),
-            forwardButton(_content),
-          ],
-        ),
-      ),
-      title: Text(
-        '$_content',
-        style: TextStyle(color: Colors.black.withOpacity(0.8)),
-      ),
-    );
-    // show the dialog
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return alert;
-      },
-    );
-  }
-
-  Widget _templateButton(IconData _iconValue, String _title, String _content) {
-    return Padding(
-      padding: EdgeInsets.all(15),
-      child: Container(
-        height: 50.0,
-        width: 50.0,
-        // ignore: deprecated_member_use
-        child: FlatButton(
-          child: Icon(
-            _iconValue,
-            color: Colors.white,
-          ),
-          color: Colors.blue[100],
-          shape: RoundedRectangleBorder(
-              borderRadius: new BorderRadius.circular(19.0)),
-          onPressed: () {
-            showAlertDialog(context, _title, _content);
-          },
-        ),
-      ),
-    );
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -202,9 +123,16 @@ class MyStateFulWidgetMessengerApp extends State<HomePage> {
                                 ),
                                 color: Colors.blue[100],
                                 shape: RoundedRectangleBorder(
-                                    borderRadius:
-                                        new BorderRadius.circular(19.0)),
-                                onPressed: () {},
+                                  borderRadius: new BorderRadius.circular(19.0),
+                                ),
+                                onPressed: () {
+                                  showAlertDialog(
+                                    context,
+                                    'Linkedin',
+                                    'https://www.linkedin.com/in/chibani-riadh-4260a71a1/',
+                                    Icons.search,
+                                  );
+                                },
                               ),
                             ),
                           ),
@@ -227,7 +155,14 @@ class MyStateFulWidgetMessengerApp extends State<HomePage> {
                                 shape: RoundedRectangleBorder(
                                     borderRadius:
                                         new BorderRadius.circular(19.0)),
-                                onPressed: () {},
+                                onPressed: () {
+                                  showAlertDialog(
+                                    context,
+                                    'GitHub',
+                                    'Riadhchibani',
+                                    Icons.search,
+                                  );
+                                },
                               ),
                             ),
                           ),
@@ -281,11 +216,100 @@ class MyStateFulWidgetMessengerApp extends State<HomePage> {
                   color: Colors.white,
                 ),
                 onPressed: () {
-                  //code
+                  //Routing
+                  Navigator.of(context).push(FromMenuRoute(
+                      prevPage: widget, nextPage: MessengerPage()));
                 },
               ),
             ),
           ],
+        ),
+      ),
+    );
+  }
+
+  showAlertDialog(BuildContext context, String _title, String _content,
+      IconData _iconData) {
+    Widget copyButton(_title) => Padding(
+          padding: EdgeInsets.all(3),
+          // ignore: deprecated_member_use
+          child: Ink(
+            decoration: const ShapeDecoration(
+              color: Colors.transparent,
+              shape: CircleBorder(),
+            ),
+            child: IconButton(
+              icon: Icon(
+                Icons.copy,
+                color: Colors.blue,
+              ),
+              onPressed: () {},
+            ),
+          ),
+        );
+    Widget forwardButton(_title, _iconType) => Padding(
+          padding: EdgeInsets.all(3),
+          // ignore: deprecated_member_use
+          child: Ink(
+            decoration: const ShapeDecoration(
+              color: Colors.transparent,
+              shape: CircleBorder(),
+            ),
+            child: IconButton(
+              icon: Icon(
+                _iconType,
+                color: Colors.blue,
+              ),
+              onPressed: () {},
+            ),
+          ),
+        );
+    // set up the AlertDialog
+    AlertDialog alert = AlertDialog(
+      content: Container(
+        padding: EdgeInsets.only(left: 70, right: 30),
+        child: Row(
+          children: [
+            copyButton(_content),
+            forwardButton(_content, _iconData),
+          ],
+        ),
+      ),
+      title: Text(
+        '$_content',
+        style: TextStyle(
+          color: Colors.black.withOpacity(0.5),
+          fontSize: 19,
+        ),
+      ),
+    );
+    // show the dialog
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return alert;
+      },
+    );
+  }
+
+  Widget _templateButton(IconData _iconValue, String _title, String _content) {
+    return Padding(
+      padding: EdgeInsets.all(15),
+      child: Container(
+        height: 50.0,
+        width: 50.0,
+        // ignore: deprecated_member_use
+        child: FlatButton(
+          child: Icon(
+            _iconValue,
+            color: Colors.white,
+          ),
+          color: Colors.blue[100],
+          shape: RoundedRectangleBorder(
+              borderRadius: new BorderRadius.circular(19.0)),
+          onPressed: () {
+            showAlertDialog(context, _title, _content, _iconValue);
+          },
         ),
       ),
     );
