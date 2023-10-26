@@ -1,6 +1,7 @@
-import 'package:app/messengerPage/messengerApp.dart';
+import 'package:app/messengerPage/MessengerApp.dart';
+import 'package:app/profilePage/ProfilePage.dart';
 import 'package:app/router/customRoutingApp.dart';
-import 'package:flutter/cupertino.dart';
+//import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -104,27 +105,27 @@ class MyStateFulWidgetMessengerApp extends State<HomePage> {
                         children: [
                           _templateButton(
                               Icons.mail, 'Gmail', 'riadhchibani144@gmail.com'),
-                          _templateButton(Icons.phone, 'Phone', '+21652385909'),
+                          _templateButton(Icons.phone, 'Phone', '+216 52 385 909'),
                           Padding(
                             padding: EdgeInsets.all(15),
                             child: Container(
                               height: 50.0,
                               width: 50.0,
                               // ignore: deprecated_member_use
-                              child: FlatButton(
+                              child: TextButton(
                                 child: Text(
                                   'in',
                                   textAlign: TextAlign.center,
                                   style: const TextStyle(
                                     fontSize: 23,
-                                    color: Colors.white,
+                                    color: Colors.black,
                                     fontWeight: FontWeight.bold,
                                   ),
                                 ),
-                                color: Colors.blue[100],
+                                /*color: Colors.blue[100],
                                 shape: RoundedRectangleBorder(
                                   borderRadius: new BorderRadius.circular(19.0),
-                                ),
+                                ),*/
                                 onPressed: () {
                                   showAlertDialog(
                                     context,
@@ -146,20 +147,20 @@ class MyStateFulWidgetMessengerApp extends State<HomePage> {
                               height: 50.0,
                               width: 50.0,
                               // ignore: deprecated_member_use
-                              child: FlatButton(
+                              child: TextButton(
                                 child: SvgPicture.asset(
                                   'assets/SVGs/githubSVG.svg',
                                   color: Colors.white,
                                 ),
-                                color: Colors.blue[100],
+                                /*color: Colors.blue[100],
                                 shape: RoundedRectangleBorder(
                                     borderRadius:
-                                        new BorderRadius.circular(19.0)),
+                                        new BorderRadius.circular(19.0)),*/
                                 onPressed: () {
                                   showAlertDialog(
                                     context,
                                     'GitHub',
-                                    'Riadhchibani',
+                                    'https://github.com/Riadhchibani',
                                     Icons.search,
                                   );
                                 },
@@ -178,6 +179,7 @@ class MyStateFulWidgetMessengerApp extends State<HomePage> {
         backgroundColor: Colors.blue[200],
         onPressed: () {
           //code
+          Navigator.of(context).push(FromMenuRoute(prevPage: widget, nextPage: ProfilePage()));
         },
         child: Image.asset(
           'assets/images/logoAppFulter.png',
@@ -191,8 +193,7 @@ class MyStateFulWidgetMessengerApp extends State<HomePage> {
       bottomNavigationBar: BottomAppBar(
         color: Colors.blue[400],
         shape: CircularNotchedRectangle(), //shape of notch
-        notchMargin:
-            6, //notche margin between floating button and bottom appbar
+        notchMargin: 6, //notche margin between floating button and bottom appbar
         child: Row(
           //children inside bottom appbar
           //mainAxisSize: MainAxisSize.max,
@@ -205,7 +206,9 @@ class MyStateFulWidgetMessengerApp extends State<HomePage> {
                   Icons.home,
                   color: Colors.white,
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  //Navigator.of(context).push(FromMenuRoute(prevPage: widget, nextPage: HomePage()));
+                },
               ),
             ),
             Padding(
@@ -217,8 +220,7 @@ class MyStateFulWidgetMessengerApp extends State<HomePage> {
                 ),
                 onPressed: () {
                   //Routing
-                  Navigator.of(context).push(FromMenuRoute(
-                      prevPage: widget, nextPage: MessengerPage()));
+                  Navigator.of(context).push(FromMenuRoute(prevPage: widget, nextPage: MessengerPage()));
                 },
               ),
             ),
@@ -228,8 +230,7 @@ class MyStateFulWidgetMessengerApp extends State<HomePage> {
     );
   }
 
-  showAlertDialog(BuildContext context, String _title, String _content,
-      IconData _iconData) {
+showAlertDialog(BuildContext context, String _title, String _content, IconData _iconData) {
     Widget copyButton(_title) => Padding(
           padding: EdgeInsets.all(3),
           // ignore: deprecated_member_use
@@ -247,7 +248,7 @@ class MyStateFulWidgetMessengerApp extends State<HomePage> {
             ),
           ),
         );
-    Widget forwardButton(_title, _iconType) => Padding(
+        Widget forwardButton(_title, _iconType) => Padding(
           padding: EdgeInsets.all(3),
           // ignore: deprecated_member_use
           child: Ink(
@@ -258,9 +259,10 @@ class MyStateFulWidgetMessengerApp extends State<HomePage> {
             child: IconButton(
               icon: Icon(
                 _iconType,
-                color: Colors.blue,
+                color: Colors.grey,
               ),
-              onPressed: () {},
+              enableFeedback: false,
+              onPressed: null,
             ),
           ),
         );
@@ -299,14 +301,14 @@ class MyStateFulWidgetMessengerApp extends State<HomePage> {
         height: 50.0,
         width: 50.0,
         // ignore: deprecated_member_use
-        child: FlatButton(
+        child: TextButton(
           child: Icon(
             _iconValue,
-            color: Colors.white,
+            color: Colors.black,
           ),
-          color: Colors.blue[100],
+          /*color: Colors.blue[100],
           shape: RoundedRectangleBorder(
-              borderRadius: new BorderRadius.circular(19.0)),
+              borderRadius: new BorderRadius.circular(19.0)),*/
           onPressed: () {
             showAlertDialog(context, _title, _content, _iconValue);
           },
